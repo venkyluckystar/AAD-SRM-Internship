@@ -1,0 +1,50 @@
+package com.example.hellotoast;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    //Declare all the views here
+    Button toast, count, decrement;
+    TextView tv;
+    int i = 0;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //Initiate the views here
+        setContentView(R.layout.activity_main);
+        toast = findViewById(R.id.toast);
+        count = findViewById(R.id.count);
+        decrement = findViewById(R.id.decrement);
+        tv = findViewById(R.id.tv);
+        decrement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i--;
+                if(i<0){
+                    i = 0;
+                }
+                tv.setText(""+i);
+            }
+        });
+        count.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i++;
+                tv.setText(""+i);
+            }
+
+        });
+        toast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Welcome to Android.Your count is:" +i, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
